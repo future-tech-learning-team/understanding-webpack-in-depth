@@ -13,7 +13,7 @@ function toggleSecretState() {
 
 function updateSecretButton() {
     if (showSecret) {
-        secretButton.textContent = 'Hide the Secret';
+        secretButton.textContent = 'Hide the Secretk';
     } else {
         secretButton.textContent = 'Show the Secret';
     }
