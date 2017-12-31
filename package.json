@@ -1,0 +1,24 @@
+{
+  "name": "understanding-webpack-in-depth",
+  "version": "1.0.0",
+  "description": "Examples for understanding webpack in depth.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack src/js/app.js dist/bundle.js --progress",
+    "build:prod": "webpack src/js/app.js dist/bundle.js --progress -p"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/future-tech-learning-team/understanding-webpack-in-depth.git"
+  },
+  "author": "HISAME SHIZUMARU",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/future-tech-learning-team/understanding-webpack-in-depth/issues"
+  },
+  "homepage": "https://github.com/future-tech-learning-team/understanding-webpack-in-depth#readme",
+  "devDependencies": {
+    "webpack": "^3.10.0"
+  }
+}
