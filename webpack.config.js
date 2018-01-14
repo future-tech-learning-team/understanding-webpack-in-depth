@@ -5,7 +5,11 @@
 
 const path = require('path');
 const cwd = process.cwd();
-const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+const extrackPlugin = new ExtractTextPlugin({
+    filename: 'dist/main.css',       // the name of extracting css code to a file,
+});
 
 module.exports = {
     // entry: 'src/js/app.js',     // incorrect! must be a nodejs path!
@@ -26,12 +30,26 @@ module.exports = {
         rules: [
             {
                 test: /\.less/,      // the pattern of regexp to match the module files
-                use: [
-                    'style-loader',         // generate js code to add style tag (css code) to page when js bundle is loaded.
-                    'css-loader',           // only analyze and add css code to javascript, but not use it
-                    'less-loader',          // analyze less code to css code
-                ]
+                // use: [
+                //     'style-loader',         // generate js code to add style tag (css code) to page when js bundle is loaded.
+                //     'css-loader',           // only analyze and add css code to javascript, but not use it
+                //     'less-loader',          // analyze less code to css code
+                // ]
+                use: extrackPlugin.extract({
+                    use: [
+                        'css-loader',
+                        {
+                            loader: 'less-loader',
+                            options: {
+                                minify: true,
+                            }
+                        }
+                    ],
+                }),
             }
         ]
-    }
+    },
+    plugins: [
+        extrackPlugin,
+    ],
 };
