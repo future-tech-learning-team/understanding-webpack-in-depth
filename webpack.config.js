@@ -25,25 +25,13 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.css/,      // the pattern of regexp to match the module files
-                // /loader: 'css-loader',   // only analyze and add css code to javascript, but not use it
+                test: /\.less/,      // the pattern of regexp to match the module files
                 use: [
-                    // 'css-loader',
-                    // 'style-loader',      // wrong order, webpack will execute loader in reverse order
-
                     'style-loader',         // generate js code to add style tag (css code) to page when js bundle is loaded.
-                    'css-loader',
+                    'css-loader',           // only analyze and add css code to javascript, but not use it
+                    'less-loader',          // analyze less code to css code
                 ]
             }
         ]
-    },
-    plugins: [
-        new webpack.optimize.UglifyJSPlugin({
-            //...
-        }),
-    ],
-    devServer: {
-        // publicPath: '/dist',
-        // publicPath: '/',    // default value is already '/', can be ignored
-    },
+    }
 };
