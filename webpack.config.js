@@ -5,6 +5,7 @@
 
 const path = require('path');
 const cwd = process.cwd();
+const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const isDev = process.env.NODE_ENV === "development";
@@ -56,5 +57,6 @@ module.exports = {
     },
     plugins: [
         extrackPlugin,
+        new webpack.NamedModulesPlugin(),
     ],
 };
