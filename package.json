@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack src/js/app.js dist/bundle.js --progress",
-    "build:prod": "webpack src/js/app.js dist/bundle.js --progress -p"
+    "dev": "webpack-dev-server --progress",
+    "build": "webpack",
+    "build:prod": "webpack -p"
   },
   "repository": {
     "type": "git",
@@ -19,6 +20,9 @@
   },
   "homepage": "https://github.com/future-tech-learning-team/understanding-webpack-in-depth#readme",
   "devDependencies": {
-    "webpack": "^3.10.0"
+    "css-loader": "^0.28.8",
+    "style-loader": "^0.19.1",
+    "webpack": "^3.10.0",
+    "webpack-dev-server": "^2.10.1"
   }
 }
