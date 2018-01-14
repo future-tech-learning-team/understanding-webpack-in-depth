@@ -7,8 +7,11 @@ const path = require('path');
 const cwd = process.cwd();
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
+const isDev = process.env.NODE_ENV === "development";
+
 const extrackPlugin = new ExtractTextPlugin({
     filename: 'dist/main.css',       // the name of extracting css code to a file,
+    disable: isDev,
 });
 
 module.exports = {
@@ -37,17 +40,19 @@ module.exports = {
                 // ]
                 use: extrackPlugin.extract({
                     use: [
-                        'css-loader',
                         {
-                            loader: 'less-loader',
+                            loader: 'css-loader',
                             options: {
-                                minify: true,
+                                minimize: isDev,
                             }
-                        }
+                        },
+                        'less-loader',
                     ],
+                    // use style-loader in development
+                    fallback: "style-loader"
                 }),
-            }
-        ]
+            },
+        ],
     },
     plugins: [
         extrackPlugin,
