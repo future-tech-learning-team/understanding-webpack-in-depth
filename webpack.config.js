@@ -31,7 +31,33 @@ module.exports = {
                     'css-loader',           // only analyze and add css code to javascript, but not use it
                     'less-loader',          // analyze less code to css code
                 ]
+            },
+            {
+                test: /\.js/,
+                use: [
+                    {
+                        loader: 'babel-loader',
+                        options: {
+                            presets: [
+                                [
+                                    'env',
+                                    {
+                                        "targets": {
+                                            "browsers": ["last 2 versions", "ie >= 9"]
+                                        }
+                                    }
+                                ],
+                            ],
+                            plugins: [
+                                "transform-object-rest-spread",
+                            ]
+                        }
+                    }
+                ]
             }
         ]
-    }
+    },
+    plugins: [
+        new webpack.NamedModulesPlugin(),
+    ]
 };
