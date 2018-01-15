@@ -19,7 +19,7 @@ module.exports = {
     output: {
         // path: path.resolve(__dirname, 'dist'),  // output folder path, must be an absolute path
         path: cwd,
-        filename: 'bundle.js',  // output filename of bundle, can be a relative path + filename, webpack dev server will find file by this conifg
+        filename: 'dist/bundle.js',  // output filename of bundle, can be a relative path + filename, webpack dev server will find file by this conifg
         // filename: 'dist/bundle.js',  // if set a relative path + filename, it can create folder(s) automatically by relative path
     },
     module: {
@@ -38,7 +38,7 @@ module.exports = {
                     {
                         loader: 'file-loader',
                         options: {
-                            name: '[name].[ext]',
+                            name: 'dist/images/[name].[ext]',
                             // outputPath: 'images/',
                             // publicPath: 'images/'
                         }
@@ -73,7 +73,4 @@ module.exports = {
     plugins: [
         new webpack.NamedModulesPlugin(),
     ],
-    devServer: {
-        publicPath: './dist'
-    }
 };
