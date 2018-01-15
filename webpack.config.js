@@ -35,21 +35,12 @@ module.exports = {
             {
                 test: /\.(jpg|png|gif)/,
                 use: [
-                    // {
-                    //     loader: 'file-loader',
-                    //     options: {
-                    //         name: 'dist/images/[name].[ext]',
-                    //         // outputPath: 'images/',
-                    //         // publicPath: 'images/'
-                    //     }
-                    // },
                     {
                         loader: 'url-loader',
                         options: {
                             limit: 8192,
-                            fallback: {
-
-                            }
+                            fallback: 'file-loader',
+                            name: 'dist/images/[name].[ext]',   // all query parameters are passed to the fallback -> file-loader
                         }
                     },
                 ]
