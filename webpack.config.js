@@ -43,9 +43,9 @@ module.exports = {
                         options: {
                             limit: 8192,
                             fallback: 'file-loader',
-                            name: 'images/[name].[ext]',   // all query parameters are passed to the fallback -> file-loader, this path will write to js code
-                            // outputPath: './dist/',  // relative path
-                            publicPath: '../',
+                            name: 'images/[name].[ext]',   // all query parameters are passed to the fallback -> file-loader, this path will be writens to js code
+                            // outputPath: './dist/',      // must be a relative path, this path will be writen to js code
+                            publicPath: '../',             // this path will be writen to js code
                         }
                     },
                 ]
