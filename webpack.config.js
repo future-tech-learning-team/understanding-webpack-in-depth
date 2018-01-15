@@ -6,6 +6,8 @@
 const path = require('path');
 const cwd = process.cwd();
 const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
     // entry: 'src/js/app.js',     // incorrect! must be a nodejs path!
@@ -17,10 +19,11 @@ module.exports = {
     //     app: [ './src/js/app.js' ],
     // },
     output: {
-        // path: path.resolve(__dirname, 'dist'),  // output folder path, must be an absolute path
-        path: cwd,
-        filename: 'dist/bundle.js',  // output filename of bundle, can be a relative path + filename, webpack dev server will find file by this conifg
+        path: path.resolve(__dirname, 'dist'),  // output folder path, must be an absolute path
+        // path: cwd,
+        filename: 'js/bundle.js',  // output filename of bundle, can be a relative path + filename, webpack dev server will find file by this conifg
         // filename: 'dist/bundle.js',  // if set a relative path + filename, it can create folder(s) automatically by relative path
+        // publicPath: './',
     },
     module: {
         rules: [
@@ -40,7 +43,9 @@ module.exports = {
                         options: {
                             limit: 8192,
                             fallback: 'file-loader',
-                            name: 'dist/images/[name].[ext]',   // all query parameters are passed to the fallback -> file-loader
+                            name: 'images/[name].[ext]',   // all query parameters are passed to the fallback -> file-loader, this path will write to js code
+                            // outputPath: './dist/',  // relative path
+                            publicPath: '../',
                         }
                     },
                 ]
@@ -71,6 +76,11 @@ module.exports = {
         ]
     },
     plugins: [
+        new CleanWebpackPlugin(['dist']),
         new webpack.NamedModulesPlugin(),
+        new HtmlWebpackPlugin({
+            filename: 'html/index.html',    // use webpack output publicPath
+            template: 'index.html',         // use webpack context path
+        }),
     ],
 };
