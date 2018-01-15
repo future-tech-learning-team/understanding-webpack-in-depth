@@ -33,16 +33,25 @@ module.exports = {
                 ]
             },
             {
-                test: /\.(jpg|png|gif)$/,
+                test: /\.(jpg|png|gif)/,
                 use: [
+                    // {
+                    //     loader: 'file-loader',
+                    //     options: {
+                    //         name: 'dist/images/[name].[ext]',
+                    //         // outputPath: 'images/',
+                    //         // publicPath: 'images/'
+                    //     }
+                    // },
                     {
-                        loader: 'file-loader',
+                        loader: 'url-loader',
                         options: {
-                            name: 'dist/images/[name].[ext]',
-                            // outputPath: 'images/',
-                            // publicPath: 'images/'
+                            limit: 8192,
+                            fallback: {
+
+                            }
                         }
-                    }
+                    },
                 ]
             },
             {
