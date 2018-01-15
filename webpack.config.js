@@ -19,8 +19,8 @@ module.exports = {
     output: {
         // path: path.resolve(__dirname, 'dist'),  // output folder path, must be an absolute path
         path: cwd,
-        // filename: 'bundle.js',  // output filename of bundle, can be a relative path + filename, webpack dev server will find file by this conifg
-        filename: 'dist/bundle.js',  // if set a relative path + filename, it can create folder(s) automatically by relative path
+        filename: 'bundle.js',  // output filename of bundle, can be a relative path + filename, webpack dev server will find file by this conifg
+        // filename: 'dist/bundle.js',  // if set a relative path + filename, it can create folder(s) automatically by relative path
     },
     module: {
         rules: [
@@ -30,6 +30,19 @@ module.exports = {
                     'style-loader',         // generate js code to add style tag (css code) to page when js bundle is loaded.
                     'css-loader',           // only analyze and add css code to javascript, but not use it
                     'less-loader',          // analyze less code to css code
+                ]
+            },
+            {
+                test: /\.(jpg|png|gif)$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: '[name].[ext]',
+                            // outputPath: 'images/',
+                            // publicPath: 'images/'
+                        }
+                    }
                 ]
             },
             {
@@ -59,5 +72,8 @@ module.exports = {
     },
     plugins: [
         new webpack.NamedModulesPlugin(),
-    ]
+    ],
+    devServer: {
+        publicPath: './dist'
+    }
 };
